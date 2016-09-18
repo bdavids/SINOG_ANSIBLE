@@ -1,0 +1,28 @@
+---
+- hosts: cisco
+  name: config_cisco
+  connection: local
+  tasks: 
+   - name: define provider
+     set_fact:
+       provider:
+         host: "{{ ansible_ssh_host }}"
+         username: "{{ username }}"
+         password: "{{ password }}"
+         timeout: 60
+
+   - name: default_config
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw.j2
+
+   - name: vlans
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw_vlans.j2
+   
+   - name: interfaces
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw_int.j2
+     with_items: "{{ interfaces }}"

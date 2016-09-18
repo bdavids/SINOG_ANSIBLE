@@ -1,0 +1,12 @@
+
+{# Access ports #}
+{% if voice %}
+interface {{ item }}
+ switchport mode access
+ switchport access vlan {{ interfaces[item].data_vlan }}
+ switchport voice vlan {{ interfaces[item].voice_vlan }}
+{% else %}
+interface {{ item }}
+ switchport mode access
+ switchport access vlan {{ interfaces[item].data_vlan }}
+{% endif %}

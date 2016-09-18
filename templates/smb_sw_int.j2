@@ -1,0 +1,16 @@
+
+{# Access #}
+{% if voice %}
+interface {{ item }}
+ switchport mode general
+ switchport general allowed vlan add {{ interfaces[item].data_vlan }} untagged
+ switchport general allowed vlan add {{ interfaces[item].voice_vlan }} tagged
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+{% else %}
+interface {{ item }}
+ switchport mode access
+ switchport access vlan {{ interfaces[item].data_vlan }}
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+{% endif %}

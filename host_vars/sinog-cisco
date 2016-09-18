@@ -1,0 +1,22 @@
+
+hostname: SINOG-CISCO
+
+uplinks: [ GigabitEthernet1/1/1, GigabitEthernet1/1/2 ]
+
+vlans:
+ - number: 10
+   name: ZAPOSLENI
+
+ - number: 20
+   name: GOSTJE
+
+ - number: 50
+   name: MGMT
+
+voice: no
+
+interfaces:
+  range GigabitEthernet1/0/1-12:
+   data_vlan: 10
+  range GigabitEthernet1/0/13-24:
+   data_vlan: 20

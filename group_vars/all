@@ -1,0 +1,20 @@
+
+username: sinog
+password: sinog
+
+domain_name: sinog.si
+
+dns_servers: [ 192.168.10.10, 192.168.10.100 ]
+
+dns_server1: 192.168.10.10
+dns_server2: 192.168.10.100
+
+ntp_servers: [ 192.168.20.10, 192.168.20.100 ]
+
+syslog_servers: [ 164.8.30.10, 192.168.30.100 ]
+
+snmp_community: sinog
+snmp_group: SINOG
+snmp_user: sinog
+snmp_auth: sinog1
+snmp_priv: sinog2

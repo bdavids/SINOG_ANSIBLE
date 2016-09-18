@@ -1,0 +1,74 @@
+
+{% if hostname %}
+hostname {{ hostname }}
+{% else %}
+{% endif %}
+
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+clock timezone CET 1 0
+clock summer-time CEST recurring last Sun Mar 2:00 last Sun Oct 3:00
+service password-encryption
+service sequence-numbers
+service tcp-keepalives-in
+service tcp-keepalives-out
+
+no service dhcp
+ip dhcp bootp ignore
+
+no ip http server
+no ip http secure-server
+
+aaa new-model
+aaa authentication login default local
+aaa authorization exec default local
+aaa authorization console
+
+ip ssh version 2
+ip ssh time-out 10
+ip ssh authentication-retries 3
+
+{% for hostip in ntp_servers %}
+ntp server {{ hostip }}
+{% endfor %}
+
+{% for hostip in syslog_servers %}
+logging host {{ hostip }} 
+{% endfor %}
+
+ip domain-name {{ domain }}
+
+{% for hostip in dns_servers %}
+ip name-server {{ hostip }} 
+{% endfor %}
+
+snmp-server community {{ snmp_community }}
+snmp-server group {{ snmp_group }} v3 priv
+snmp-server user {{ snmp_user }} {{ snmp_group }} v3 auth md5 {{ snmp_auth }} priv aes 128 {{ snmp_priv }}
+
+vtp mode off
+
+spanning-tree mode rapid-pvst
+spanning-tree portfast default
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+
+line con 0
+ logging synchronous
+ escape-character 3
+
+line vty 0 4
+ exec-timeout 30 0
+ timeout login response 10
+ logging synchronous
+ transport input ssh
+ transport preferred none
+ escape-character 3
+
+line vty 5 15
+ exec-timeout 30 0
+ timeout login response 10
+ logging synchronous
+ transport input ssh
+ transport preferred none
+ escape-character 3
