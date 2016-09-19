@@ -41,6 +41,8 @@ ansible 2.1.1.0
    switchport trunk allowed vlan 50
    
    switchport mode trunk
+  
+   switchport nonegotiate
    
    no shutdown
 
