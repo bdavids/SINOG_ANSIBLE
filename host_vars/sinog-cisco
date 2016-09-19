@@ -13,10 +13,10 @@ vlans:
  - number: 50
    name: MGMT
 
-voice: no
-
 interfaces:
   range GigabitEthernet1/0/1-12:
    data_vlan: 10
+   voice_vlan:
   range GigabitEthernet1/0/13-24:
    data_vlan: 20
+   voice_vlan:
