@@ -1,6 +1,6 @@
 
 {# Access #}
-{% if voice %}
+{% if interfaces[item].voice_vlan %}
 interface {{ item }}
  switchport mode general
  switchport general allowed vlan add {{ interfaces[item].data_vlan }} untagged
