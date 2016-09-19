@@ -3,6 +3,7 @@
 {% if interfaces[item].voice_vlan %}
 interface {{ item }}
  switchport mode general
+ switchport general pvid {{ interfaces[item].data_vlan }}
  switchport general allowed vlan add {{ interfaces[item].data_vlan }} untagged
  switchport general allowed vlan add {{ interfaces[item].voice_vlan }} tagged
  spanning-tree portfast
