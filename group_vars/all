@@ -11,7 +11,7 @@ dns_server2: 192.168.10.100
 
 ntp_servers: [ 192.168.20.10, 192.168.20.100 ]
 
-syslog_servers: [ 164.8.30.10, 192.168.30.100 ]
+syslog_servers: [ 192.168.30.10, 192.168.30.100 ]
 
 snmp_community: sinog
 snmp_group: SINOG
