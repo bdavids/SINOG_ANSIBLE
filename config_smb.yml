@@ -16,6 +16,11 @@
       provider: "{{ provider }}"
       src: templates/smb_sw.j2
 
+   - name: banner_exec
+     ios_command:
+      provider: "{{ provider }}"
+      commands: do copy tftp://{{ tftp_server }}/banner_exec.txt running-config
+
    - name: vlans
      ios_template:
       provider: "{{ provider }}"
