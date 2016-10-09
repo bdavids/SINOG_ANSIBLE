@@ -21,7 +21,7 @@
       provider: "{{ provider }}"
       src: templates/smb_sw_vlans.j2
 
-  - name: uplinks
+   - name: uplinks
      ios_template:
       provider: "{{ provider }}"
       src: templates/smb_sw_uplinks.j2
