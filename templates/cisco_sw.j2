@@ -36,7 +36,7 @@ ntp server {{ hostip }}
 logging host {{ hostip }} 
 {% endfor %}
 
-ip domain-name {{ domain }}
+ip domain-name {{ domain_name }}
 
 {% for hostip in dns_servers %}
 ip name-server {{ hostip }} 
