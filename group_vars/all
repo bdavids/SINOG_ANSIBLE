@@ -13,6 +13,8 @@ ntp_servers: [ 192.168.20.10, 192.168.20.100 ]
 
 syslog_servers: [ 192.168.30.10, 192.168.30.100 ]
 
+banner_exec: /home/david/banners/banner_exec.txt
+
 snmp_community: sinog
 snmp_group: SINOG
 snmp_user: sinog

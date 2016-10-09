@@ -15,6 +15,9 @@
      ios_template:
       provider: "{{ provider }}"
       src: templates/cisco_sw.j2
+      
+   - name: banner_exec
+     local_action: command /usr/bin/sshpass -p {{ password }} /usr/bin/scp {{ banner_exec }} {{ username }}@{{ ansible_ssh_host }}:running-config
 
    - name: vlans
      ios_template:
