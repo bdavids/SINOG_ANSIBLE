@@ -1,11 +1,6 @@
 
 hostname: SINOG-CISCO
 
-uplinks: 
-  GigabitEthernet1/1/1:
-    vlans: 10,20,50 
-  GigabitEthernet1/1/2:
-    vlans: 20,50
 vlans:
  - number: 10
    name: ZAPOSLENI
@@ -15,6 +10,12 @@ vlans:
 
  - number: 50
    name: MGMT
+
+uplinks: 
+  GigabitEthernet1/1/1:
+    vlans: 10,20,50 
+  GigabitEthernet1/1/2:
+    vlans: 20,50
 
 interfaces:
   range GigabitEthernet1/0/1-12:
