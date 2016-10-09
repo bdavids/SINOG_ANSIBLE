@@ -20,6 +20,12 @@
      ios_template:
       provider: "{{ provider }}"
       src: templates/cisco_sw_vlans.j2
+      
+   - name: uplinks
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw_uplinks.j2
+     with_items: "{{ uplinks }}"
    
    - name: interfaces
      ios_template:

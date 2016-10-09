@@ -1,8 +1,11 @@
 
 hostname: SINOG-CISCO
 
-uplinks: [ GigabitEthernet1/1/1, GigabitEthernet1/1/2 ]
-
+uplinks: 
+  GigabitEthernet1/1/1:
+    vlans: 10,20,50 
+  GigabitEthernet1/1/2:
+    vlans: 20,50
 vlans:
  - number: 10
    name: ZAPOSLENI

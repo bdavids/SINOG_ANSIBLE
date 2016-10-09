@@ -3,9 +3,8 @@
 interface {{ item }}
  switchport mode access
  switchport nonegotiate
-{% if interfaces[item].voice_vlan %}
  switchport access vlan {{ interfaces[item].data_vlan }}
+{% if interfaces[item].voice_vlan %}
  switchport voice vlan {{ interfaces[item].voice_vlan }}
 {% else %}
- switchport access vlan {{ interfaces[item].data_vlan }}
 {% endif %}
