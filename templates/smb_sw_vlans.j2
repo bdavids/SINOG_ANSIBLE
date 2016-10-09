@@ -4,16 +4,3 @@ vlan {{ vlan.number }}
 interface vlan {{ vlan.number }}
 name {{ vlan.name }}
 {% endfor %}
-
-{# Uplinks #}
-{% for uplink in uplinks %}
-{% if loop.first %}
-{% endif %}
-interface {{ uplink }}
- switchport mode trunk
-{% for vlan in vlans %}
- switchport trunk allowed vlan add {{ vlan.number }}
-{% endfor %}
-{% if loop.last %}
-{% endif %}
-{% endfor %}
