@@ -1,0 +1,4 @@
+{# Uplinks #}
+interface {{ item }}
+ switchport mode trunk
+ switchport trunk allowed vlan add {{ uplinks[item].vlans }}

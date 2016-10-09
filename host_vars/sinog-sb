@@ -1,8 +1,6 @@
 
 hostname: SINOG-SMB
 
-uplinks: [ Gigabitethernet49, Gigabitethernet50 ]
-
 vlans:
  - number: 10
    name: ZAPOSLENI
@@ -12,6 +10,12 @@ vlans:
 
  - number: 50
    name: MGMT
+
+uplinks: 
+  Gigabitethernet49:
+   vlans: 10,20,50 
+  Gigabitethernet50:
+   vlans: 20,50
 
 interfaces:
   range gigabitethernet1-24:
