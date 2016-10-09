@@ -8,6 +8,9 @@ ip ssh server
 no ip telnet server
 no ip http server
 no ip telnet server
+
+line ssh
+ exec-timeout 30
  
 clock timezone " " +1
 clock summer-time web recurring eu
@@ -23,7 +26,7 @@ sntp server {{ hostip }}
 logging host {{ hostip }} 
 {% endfor %}
 
-ip domain name {{ domain }}
+ip domain name {{ domain_name }}
 ip name-server {{ dns_server1 }} {{ dns_server2 }}
 
 cdp device-id format hostname
