@@ -2,7 +2,7 @@
 
 # OS :
 
-Debian GNU/Linux 8
+CentOS Linux release 7.3.1611 (Core)
 
 # ANSIBLE :
 
