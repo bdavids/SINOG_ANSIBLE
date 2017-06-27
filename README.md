@@ -24,3 +24,21 @@ ansible 2.3.1.0
   config file = /etc/ansible/ansible.cfg
   configured module search path = Default w/o overrides
   python version = 2.7.5 (default, Nov  6 2016, 00:28:07) [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)]
+
+# open file with password (sinog)
+
+ansible-vault encrypt secure/ssh_user
+
+# run ansible scripts
+
+# generate config files
+
+ansible-playbook config_cisco_l2.yml --ask-vault --tags "config"
+
+# complete cisco switch config
+
+cat configs/cisco_l2.cfg
+
+# deploy to switch
+
+ansible-playbook config_cisco_l2.yml --ask-vault --tags "deploy"

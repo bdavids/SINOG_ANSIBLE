@@ -1,0 +1,22 @@
+
+snmp-server contact {{ snmp_contact }}
+snmp-server location {{ snmp_location }}
+snmp-server group {{ snmp_group }} v3 priv
+
+{% if snmp_acl_v4 %}
+{% if snmp_acl_v6 %}
+snmp-server community {{ snmp_community }} ipv6 {{ snmp_acl_v6 }} {{ snmp_acl_v4 }}
+snmp-server user {{ snmp_user }} {{ snmp_group }} v3 auth md5 {{ snmp_auth }} priv aes 128 {{ snmp_priv }} access ipv6 {{ snmp_acl_v6 }} {{ snmp_acl_v4 }}
+{% else %}
+snmp-server community {{ snmp_community }} {{ snmp_acl_v4 }}
+snmp-server user {{ snmp_user }} {{ snmp_group }} v3 auth md5 {{ snmp_auth }} priv aes 128 {{ snmp_priv }} access {{ snmp_acl_v4 }}
+{% endif %}
+{% else %}
+{% if snmp_acl_v6 %}
+snmp-server community {{ snmp_community }} ipv6 {{ snmp_acl_v6 }}
+snmp-server user {{ snmp_user }} {{ snmp_group }} v3 auth md5 {{ snmp_auth }} priv aes 128 {{ snmp_priv }} access ipv6 {{ snmp_acl_v6 }}
+{% else %}
+snmp-server community {{ snmp_community }}
+snmp-server user {{ snmp_user }} {{ snmp_group }} v3 auth md5 {{ snmp_auth }} priv aes 128 {{ snmp_priv }}
+{% endif %}
+{% endif %}

@@ -48,7 +48,21 @@ interfaces:
   port_channel_id:
   port_channel_mode:
 
-non_use_interfaces:
+# Fa0/0/2:
+#  data_vlan: 10
+#  voice_vlan: 20
+#  port_sec: "yes"
+#  port_sec_type: "sticky"
+#  port_sec_viol:
+#  port_sec_max: 2
+#  port_sec_max_access: 1
+#  port_sec_max_voice: 1
+#  src_guard: "port-security"
+#  port_channel_id:
+#  port_channel_mode:
+
+unused_interfaces:
+ range Fa1/0/20-40:
 
 descriptions:
  Fa1/0/1: "TEST"

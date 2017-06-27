@@ -1,0 +1,11 @@
+{# Non use interface #}
+{% if unused_interfaces %}
+{% for i in unused_interfaces %}
+
+default interface {{ i }}
+interface {{ i }}
+ no description
+ shutdown
+{% endfor %}
+{% else %}
+{% endif %}

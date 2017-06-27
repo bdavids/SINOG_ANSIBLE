@@ -11,12 +11,17 @@
   - file: path=configs/{{ inventory_hostname }} state=directory
     tags: [ config ]
 
+  - file: path=configs/{{ inventory_hostname }}.cfg state=absent
+    tags: [ config ]
+
   - include: tasks/banners.yml
     tags: [ deploy ]
   
   - include: tasks/cisco_ssh.yml
 
   - include: tasks/cisco_default.yml
+
+  - include: tasks/cisco_snmp.yml
 
   - include: tasks/cisco_mgmt_int.yml
 
@@ -29,4 +34,8 @@
   - include: tasks/l2_switch/access.yml
 
   - include: tasks/cisco_int_desc.yml
+
+  - include: tasks/cisco_unused_int.yml
+
+  - include: tasks/cisco_complete_config.yml
 

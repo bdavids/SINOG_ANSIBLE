@@ -1,0 +1,12 @@
+---
+ - name: config snmp
+   template:
+    src: templates/cisco_snmp.j2
+    dest: configs/{{ inventory_hostname }}//snmp.cfg
+   tags: [ config ]
+
+ - name: deploy snmp
+   ios_config:
+    provider: "{{ cli }}"
+    src: configs/{{ inventory_hostname }}//snmp.cfg
+   tags: [ deploy ]
