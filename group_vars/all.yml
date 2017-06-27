@@ -1,7 +1,5 @@
 ---
 
-username: cisco
-password: cisco
 transport: cli
 
 cli:
