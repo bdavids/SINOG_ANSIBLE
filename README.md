@@ -6,7 +6,7 @@ CentOS Linux release 7.3.1611 (Core)
 
 # ANSIBLE :
 
-yum install epel-release
+yum -y install epel-release
 
 yum -y install gcc libffi-devel python-devel openssl-devel
 
@@ -16,7 +16,7 @@ pip install --upgrade pip
 
 pip install -U setuptools
 
-yum install ansible
+yum -y install ansible
 
 ansible --version
 
