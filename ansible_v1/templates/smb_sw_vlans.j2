@@ -1,0 +1,6 @@
+{# Vlans #}
+{% for vlan in vlans %}
+vlan {{ vlan.number }}
+interface vlan {{ vlan.number }}
+name {{ vlan.name }}
+{% endfor %}

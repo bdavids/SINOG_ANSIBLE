@@ -1,0 +1,26 @@
+
+hostname: SINOG-SMB
+
+vlans:
+ - number: 10
+   name: ZAPOSLENI
+
+ - number: 20
+   name: GOSTJE
+
+ - number: 50
+   name: MGMT
+
+uplinks: 
+  Gigabitethernet49:
+   vlans: 10,20,50 
+  Gigabitethernet50:
+   vlans: 20,50
+
+interfaces:
+  range gigabitethernet1-24:
+   data_vlan: 10
+   voice_vlan:
+  range GigabitEthernet25-48:
+   data_vlan: 20
+   voice_vlan:

@@ -1,0 +1,37 @@
+---
+- hosts: cisco
+  name: config_cisco
+  connection: local
+  tasks: 
+   - name: define provider
+     set_fact:
+       provider:
+         host: "{{ ansible_ssh_host }}"
+         username: "{{ username }}"
+         password: "{{ password }}"
+         timeout: 60
+
+   - name: default_config
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw.j2
+      
+   - name: banner_exec
+     local_action: command /usr/bin/sshpass -p {{ password }} /usr/bin/scp {{ banner_exec }} {{ username }}@{{ ansible_ssh_host }}:running-config
+
+   - name: vlans
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw_vlans.j2
+      
+   - name: uplinks
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw_uplinks.j2
+     with_items: "{{ uplinks }}"
+   
+   - name: interfaces
+     ios_template:
+      provider: "{{ provider }}"
+      src: templates/cisco_sw_int.j2
+     with_items: "{{ interfaces }}"
