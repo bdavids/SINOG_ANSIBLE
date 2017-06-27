@@ -1,0 +1,12 @@
+---
+- name: config trunks
+  template:
+   src: templates/cisco_trunks.j2
+   dest: configs/{{ inventory_hostname }}/trunk_int.cfg
+  tags: [ config ]
+
+- name: deploy trunks
+  ios_config:
+   provider: "{{ cli }}"
+   src: configs/{{ inventory_hostname }}/trunk_int.cfg
+  tags: [ deploy ]

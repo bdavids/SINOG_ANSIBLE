@@ -1,0 +1,57 @@
+{# Uplinks #}
+{% if uplinks %}
+{% for name,uplink in uplinks |dictsort %}
+{% if uplink.port_channel_id %}
+
+interface Po{{ uplink.port_channel_id }}
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan {{ uplink.vlans }}
+ switchport mode trunk
+ switchport nonegotiate
+ no keepalive
+{% if uplink.stp_guard %}
+ spanning-tree guard {{ uplink.stp_guard }}
+{% else %}
+{% endif %}
+{% if dhcp_snooping %}
+ ip dhcp snooping trust
+{% else %}
+{% endif %}
+{% if arp_inspection %}
+ ip arp inspection trust
+{% else %}
+{% endif %}
+ no shutdown
+
+interface {{ name }}
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan {{ uplink.vlans }}
+ switchport mode trunk
+ switchport nonegotiate
+ no keepalive
+ channel-group {{ uplink.port_channel_id }} mode {{ uplink.port_channel_mode }}
+{% else %}
+
+interface {{ name }}
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan {{ uplink.vlans }}
+ switchport mode trunk
+ switchport nonegotiate
+ no keepalive
+{% endif %}
+{% if uplink.stp_guard %}
+ spanning-tree guard {{ uplink.stp_guard }}
+{% else %}
+{% endif %}
+{% if dhcp_snooping %}
+ ip dhcp snooping trust
+{% else %}
+{% endif %}
+{% if arp_inspection %}
+ ip arp inspection trust
+{% else %}
+{% endif %}
+ no shutdown
+{% endfor %}
+{% else %}
+{% endif %}

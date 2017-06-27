@@ -1,0 +1,54 @@
+{# Access ports #}
+{% if interfaces %}
+{% for name,int in interfaces |dictsort %}
+
+interface {{ name }}
+ switchport mode access
+ switchport nonegotiate
+ switchport access vlan {{ int.data_vlan }}
+ no keepalive
+{% if int.voice_vlan %}
+ switchport voice vlan {{ int.voice_vlan }}
+ no spanning-tree portfast
+{% else %}
+ no cdp enable
+{% endif %}
+{% if dhcp_snooping %}
+ ip dhcp snooping limit rate {{ dhcp_snooping_limit }}
+{% else %}
+{% endif %}
+{% if arp_inspection %}
+ ip arp inspection limit rate {{ arp_inspection_limit }}
+{% else %}
+{% endif %}
+{% if int.port_sec %}
+ switchport port-security
+{% if int.port_sec_type %}
+ switchport port-security mac-address {{ int.port_sec_type }}
+{% else %}
+{% endif %}
+{% if int.port_sec_viol %}
+ switchport port-security violation {{ int.port_sec_viol }}
+{% else %}
+{% endif %}
+{% if int.port_sec_max %}
+ switchport port-security maximum {{ int.port_sec_max }}
+{% else %}
+{% endif %}
+{% if int.port_sec_max_access %}
+ switchport port-security maximum {{ int.port_sec_max_access }} vlan access
+{% else %}
+{% endif %}
+{% if int.port_sec_max_voice %}
+ switchport port-security maximum {{ int.port_sec_max_voice }} vlan voice
+{% else %}
+{% endif %}
+{% if int.src_guard %}
+ ip verify source {{ int.src_guard }}
+{% else %}
+{% endif %}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}

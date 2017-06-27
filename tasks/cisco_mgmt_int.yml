@@ -1,0 +1,12 @@
+---
+- name: config mgmt
+  template:
+   src: templates/cisco_int_mgmt.j2
+   dest: configs/{{ inventory_hostname }}/mgmt_int.cfg
+  tags: [ config ]
+
+- name: deploy mgmt
+  ios_config:
+   provider: "{{ cli }}"
+   src: configs/{{ inventory_hostname }}/mgmt_int.cfg
+  tags: [ deploy mgmt ]

@@ -1,0 +1,12 @@
+---
+- name: config uplinks
+  template:
+   src: templates/cisco_uplinks.j2
+   dest: configs/{{ inventory_hostname }}/uplink_int.cfg
+  tags: [ config ]
+
+- name: deploy uplinks
+  ios_config:
+   provider: "{{ cli }}"
+   src: configs/{{ inventory_hostname }}/uplink_int.cfg
+  tags: [ deploy ]

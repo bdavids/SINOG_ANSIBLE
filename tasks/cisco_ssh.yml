@@ -1,0 +1,12 @@
+---
+- name: config ssh
+  template:
+   src: templates/cisco_ssh.j2
+   dest: configs/{{ inventory_hostname }}/ssh_conf.cfg
+  tags: [ config ]
+
+- name: deploy ssh config
+  ios_config:
+   provider: "{{ cli }}"
+   src: configs/{{ inventory_hostname }}/ssh_conf.cfg
+  tags: [ deploy ssh ]

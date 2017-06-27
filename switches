@@ -1,5 +1,2 @@
-[cisco]
-sinog-cisco ansible_ssh_host=192.168.50.10
-
-[smb]
-sinog-sb ansible_ssh_host=192.168.50.100
+[sw_cisco_l2]
+cisco_l2 ansible_ssh_host="cisco_l2.sinog.si"

@@ -1,0 +1,32 @@
+---
+- hosts: sw_cisco_l2
+
+  gather_facts: no
+  connection: local
+
+  vars_files:
+  - secure/ssh_user
+
+  tasks:
+  - file: path=configs/{{ inventory_hostname }} state=directory
+    tags: [ config ]
+
+  - include: tasks/banners.yml
+    tags: [ deploy ]
+  
+  - include: tasks/cisco_ssh.yml
+
+  - include: tasks/cisco_default.yml
+
+  - include: tasks/cisco_mgmt_int.yml
+
+  - include: tasks/l2_switch/vlans.yml
+
+  - include: tasks/l2_switch/uplinks.yml
+
+  - include: tasks/l2_switch/trunks.yml
+
+  - include: tasks/l2_switch/access.yml
+
+  - include: tasks/cisco_int_desc.yml
+

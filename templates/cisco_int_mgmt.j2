@@ -1,0 +1,20 @@
+
+{% if mgmt %}
+{% for name,int in mgmt |dictsort %}
+{% if int.ip_addr %}
+interface {{ name }}
+ ip address {{ int.ip_addr }} {{ int.netmask }}
+ exit
+ip default-gateway {{ int.gw }}
+{% else %}
+{% endif %}
+{% if int.ipv6_addr %}
+interface {{ name }}
+ ipv6 address {{ int.ipv6_addr }}/64
+ exit
+ipv6 route ::/0 {{ int.gw6 }}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}

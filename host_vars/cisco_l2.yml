@@ -1,0 +1,54 @@
+---
+
+mgmt:
+ Vlan200:
+  ip_addr: 192.168.200.2
+  netmask: 255.255.255.0
+  gw: 192.168.200.1
+  ipv6_addr: 2001:db8:200::2
+  gw6: 2001:db8:200::1
+
+line_vty_acl_v4:
+line_vty_acl_v6:
+snmp_acl_v4:
+snmp_acl_v6:
+
+vlans: [ 10,20,200 ]
+
+dhcp_snooping:
+arp_inspection: [ ] 
+   
+uplinks: 
+ range Fa1/0/46-47:
+  vlans: 10,20,200
+  stp_guard: "loop"
+  port_channel_id:
+  port_channel_mode:
+
+trunks:
+ Fa1/0/10:
+  native_vlan: 200
+  vlans: 10
+  portfast: "yes"
+  stp_guard:
+  port_channel_id:
+  port_channel_mode:
+
+interfaces:
+ Fa1/0/1:
+  data_vlan: 10
+  voice_vlan: 20
+  port_sec: "yes"
+  port_sec_type: "sticky"
+  port_sec_viol:
+  port_sec_max: 2
+  port_sec_max_access: 1
+  port_sec_max_voice: 1
+  src_guard:
+  port_channel_id:
+  port_channel_mode:
+
+non_use_interfaces:
+
+descriptions:
+ Fa1/0/1: "TEST"
