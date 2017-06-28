@@ -40,6 +40,6 @@ ansible-playbook config_cisco_l2.yml --ask-vault --tags "config"
 
 cat configs/cisco_l2.cfg
 
-### deploy to switch
+### deploy config files to switch
 
 ansible-playbook config_cisco_l2.yml --ask-vault --tags "deploy"
