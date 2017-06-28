@@ -1,0 +1,4 @@
+---
+- file: path=configs/{{ inventory_hostname }} state=directory
+
+- file: path=configs/{{ inventory_hostname }}.cfg state=absent

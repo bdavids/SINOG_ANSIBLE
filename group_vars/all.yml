@@ -25,7 +25,6 @@ tftp_server: [ 192.168.10.8 ]
 banner_exec: banner_exec.txt
 
 snmp_contact: nog@sinog.si
-snmp_location: lab
 snmp_community: sinog
 snmp_group: SINOG
 snmp_user: sinog

@@ -9,5 +9,6 @@
    cat "configs/{{ inventory_hostname }}/uplink_int.cfg" >> "configs/{{ inventory_hostname }}.cfg"
    cat "configs/{{ inventory_hostname }}/trunk_int.cfg" >> "configs/{{ inventory_hostname }}.cfg"
    cat "configs/{{ inventory_hostname }}/access_int.cfg" >> "configs/{{ inventory_hostname }}.cfg"
+   cat "configs/{{ inventory_hostname }}/int_desc.cfg" >> "configs/{{ inventory_hostname }}.cfg"
    cat "configs/{{ inventory_hostname }}/unused_int.cfg" >> "configs/{{ inventory_hostname }}.cfg"
   tags: [ config ]

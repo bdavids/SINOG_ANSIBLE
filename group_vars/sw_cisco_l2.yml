@@ -1,8 +1,9 @@
 ---
 banner_login: banner_login_sinog.txt
 
-all_vlans:
+snmp_location: lab
 
+all_vlans:
  SINOG-10:  { id: 10 }
  SINOG-20:  { id: 20 }
  SINOG-200: { id: 200 }

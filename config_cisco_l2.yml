@@ -8,10 +8,7 @@
   - secure/ssh_user
 
   tasks:
-  - file: path=configs/{{ inventory_hostname }} state=directory
-    tags: [ config ]
-
-  - file: path=configs/{{ inventory_hostname }}.cfg state=absent
+  - include: tasks/create_dir_file.yml
     tags: [ config ]
 
   - include: tasks/banners.yml
@@ -23,15 +20,15 @@
 
   - include: tasks/cisco_snmp.yml
 
-  - include: tasks/cisco_mgmt_int.yml
+  - include: tasks/l2_cisco_switch/mgmt_int.yml
 
-  - include: tasks/l2_switch/vlans.yml
+  - include: tasks/l2_cisco_switch/vlans.yml
 
-  - include: tasks/l2_switch/uplinks.yml
+  - include: tasks/l2_cisco_switch/uplinks.yml
 
-  - include: tasks/l2_switch/trunks.yml
+  - include: tasks/l2_cisco_switch/trunks.yml
 
-  - include: tasks/l2_switch/access.yml
+  - include: tasks/l2_cisco_switch/access.yml
 
   - include: tasks/cisco_int_desc.yml
 

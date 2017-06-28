@@ -5,7 +5,7 @@
    dest: configs/{{ inventory_hostname }}/unused_int.cfg
   tags: [ config ]
 
-- name: non use interfaces
+- name: deploy unused interfaces:w
   ios_config:
    provider: "{{ cli }}"
    src: configs/{{ inventory_hostname }}/unused_int.cfg

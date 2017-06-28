@@ -1,2 +1,5 @@
 [sw_cisco_l2]
 cisco_l2 ansible_ssh_host="cisco_l2.sinog.si"
+
+[sw_smb_l2]
+smb_l2 ansible_ssh_host="smb_l2.sinog.si"
