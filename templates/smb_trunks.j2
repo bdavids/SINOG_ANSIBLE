@@ -1,0 +1,32 @@
+{# Trunks #}
+{% if trunks %}
+{% for name,trunk in trunks |dictsort %}
+{% if trunk.port_channel_id %}
+
+interface Po{{ trunk.port_channel_id }}
+ switchport trunk allowed vlan add {{ trunk.vlans }}
+ switchport mode trunk
+
+interface {{ name }}
+ channel-group {{ trunk.port_channel_id }} mode {{ trunk.port_channel_mode }}
+{% else %}
+
+interface {{ name }}
+ switchport trunk allowed vlan add {{ trunk.vlans }}
+ switchport mode trunk
+{% endif %}
+{% if trunk.native_vlan %}
+ switchport trunk native vlan {{ trunk.native_vlan }}
+{% else %}
+{% endif %}
+{% if trunk.portfast %}
+ spanning-tree portfast 
+{% else %}
+{% endif %}
+{% if trunk.stp_guard %}
+ spanning-tree guard {{ trunk.stp_guard }}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}

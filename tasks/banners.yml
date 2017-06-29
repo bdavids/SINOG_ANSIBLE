@@ -1,12 +1,12 @@
 ---
- - name: login banner
-   ios_banner:
-    provider: "{{ cli }}"
-    banner:  login
-    text: "{{ lookup('file', './banners/{{ banner_login }}') }}" 
+- name: login banner
+  ios_banner:
+   provider: "{{ cli }}"
+   banner:  login
+   text: "{{ lookup('file', './banners/{{ banner_login }}') }}" 
 
-# - name: exec banner
-#   ios_command:
-#    provider: "{{ cli }}"
-#    commands: 
-#     - "copy tftp://{{ tftp_server }}/{{ banner_exec }} running-config\n"
+- name: exec banner
+  ios_command:
+   provider: "{{ cli }}"
+   commands:
+    - "copy tftp://{{ tftp_server }}/{{ banner_exec }} running-config\n"

@@ -1,0 +1,13 @@
+---
+- name: config ssh
+  template:
+   src: templates/smb_ssh.j2
+   dest: configs/{{ inventory_hostname }}/ssh_conf.cfg
+  tags: [ config ]
+
+- name: deploy ssh
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: configs/{{ inventory_hostname }}/ssh_conf.cfg
+  tags: [ deploy ]

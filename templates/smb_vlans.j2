@@ -1,0 +1,11 @@
+
+{% for name,vlan in all_vlans|dictsort %}
+{% for vl in vlans %}
+{% if vl == vlan.id %}
+vlan {{ vlan.id }}
+interface vlan {{ vlan.id }}
+ name {{ name }}
+{% else %}
+{% endif %}
+{% endfor %}
+{% endfor %}

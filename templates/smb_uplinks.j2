@@ -1,0 +1,32 @@
+{# Uplinks #}
+{% if uplinks %}
+{% for name,uplink in uplinks |dictsort %}
+{% if uplink.port_channel_id %}
+
+interface Po{{ uplink.port_channel_id }}
+ switchport trunk allowed vlan add {{ uplink.vlans }}
+ switchport mode trunk
+
+interface {{ name }}
+ channel-group {{ uplink.port_channel_id }} mode {{ uplink.port_channel_mode }}
+{% else %}
+
+interface {{ name }}
+ switchport trunk allowed vlan add {{ uplink.vlans }}
+ switchport mode trunk
+{% endif %}
+{% if uplink.stp_guard %}
+ spanning-tree guard {{ uplink.stp_guard }}
+{% else %}
+{% endif %}
+{% if dhcp_snooping %}
+ ip dhcp snooping trust
+{% else %}
+{% endif %}
+{% if arp_inspection %}
+ ip arp inspection trust
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}

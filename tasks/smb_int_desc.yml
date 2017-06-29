@@ -1,0 +1,13 @@
+---
+- name: config int desc
+  template:
+   src: templates/smb_int_desc.j2
+   dest: configs/{{ inventory_hostname }}/int_desc.cfg
+  tags: [ config ]
+
+- name: deploy int desc
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: configs/{{ inventory_hostname }}/int_desc.cfg
+  tags: [ deploy ]

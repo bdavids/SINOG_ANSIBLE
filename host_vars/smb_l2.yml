@@ -1,0 +1,54 @@
+---
+
+Vlan200:
+ ip_addr: 192.168.200.3
+ netmask: /24
+ gw: 192.168.200.1
+ ipv6_addr: 2001:db8:200::3
+ gw6: 2001:db8:200::1
+
+vlans: [ 10,20,200 ]
+
+snmp_location: lab
+   
+uplinks: 
+ Fa8:
+  vlans: 10,20,200
+  stp_guard: 
+  port_channel_id:
+  port_channel_mode:
+
+trunks:
+ Fa7:
+  native_vlan: 200
+  vlans: 10,200
+  portfast: "yes"
+  stp_guard:
+  port_channel_id:
+  port_channel_mode: 
+
+access:
+ Fa1:
+  data_vlan: 10
+  voice_vlan:
+#  port_sec_mode: secure permanent
+  port_sec_mode:
+#  port_sec_action: discard-shutdown
+  port_sec_action:
+  port_sec_max:
+
+ range Fa2-3:
+  data_vlan: 10
+  voice_vlan: 20
+  port_sec_mode:
+  port_sec_action:
+  port_sec_max:
+
+unused_interfaces:
+ range Fa4-6:
+ 
+descriptions:
+ Fa1: "TEST-1"
+ Fa2: "TEST-2"
+ Fa3: "TEST-3"
+ Fa8: "UPLINK"

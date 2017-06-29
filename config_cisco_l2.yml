@@ -34,5 +34,5 @@
 
   - include: tasks/cisco_unused_int.yml
 
-  - include: tasks/cisco_complete_config.yml
+  - include: tasks/complete_config.yml
 

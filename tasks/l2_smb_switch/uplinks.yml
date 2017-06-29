@@ -1,0 +1,13 @@
+---
+- name: config uplinks
+  template:
+   src: templates/smb_uplinks.j2
+   dest: configs/{{ inventory_hostname }}/uplink_int.cfg
+  tags : [ config ]
+
+- name: deploy uplinks
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: configs/{{ inventory_hostname }}/uplink_int.cfg
+  tags : [ deploy ]

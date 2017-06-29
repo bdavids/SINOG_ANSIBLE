@@ -1,0 +1,15 @@
+
+no passwords complexity enable
+passwords aging 0
+
+ip ssh password-auth
+ip ssh server 
+
+line ssh
+ exec-timeout 60
+
+username {{ username }} privilege 15 password {{ password }}
+enable password {{ secret }}
+
+hostname {{ inventory_hostname }}
+ip domain name {{ domain_name }}

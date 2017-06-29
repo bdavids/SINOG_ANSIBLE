@@ -1,0 +1,30 @@
+
+no ip telnet server
+no ip http server
+no ip http secure-server
+ 
+clock timezone " " +1
+clock summer-time web recurring eu
+clock source sntp
+sntp unicast client enable
+sntp unicast client poll
+
+{% for hostip in ntp_servers %}
+sntp server {{ hostip }}
+{% endfor %}
+
+{% for hostip in syslog_servers %}
+!logging host {{ hostip }} 
+{% endfor %}
+
+ip name-server {{ dns_server1 }} {{ dns_server2 }}
+
+cdp device-id format hostname
+no lldp run
+
+spanning-tree mode rstp
+
+errdisable recovery cause all
+errdisable recovery interval 120
+
+macro auto disabled

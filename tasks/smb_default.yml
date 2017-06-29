@@ -1,0 +1,13 @@
+---
+- name: config default config
+  template:
+   src: templates/smb_default.j2
+   dest: configs/{{ inventory_hostname }}/default_conf.cfg
+  tags : [ config ]
+
+- name: deploy default config
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: configs/{{ inventory_hostname }}/default_conf.cfg
+  tags : [ deploy ]

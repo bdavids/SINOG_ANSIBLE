@@ -20,7 +20,7 @@ ntp_servers: [ 192.168.20.10, 192.168.20.100 ]
 
 syslog_servers: [ 192.168.30.10, 192.168.30.100 ]
 
-tftp_server: [ 192.168.10.8 ]
+tftp_server: 192.168.100.100
 
 banner_exec: banner_exec.txt
 

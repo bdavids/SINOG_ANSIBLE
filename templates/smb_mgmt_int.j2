@@ -1,24 +1,21 @@
-
 {% if mgmt %}
 {% for name,int in mgmt |dictsort %}
 {% if int.ip_addr %}
 
-interface vlan 1
- no ip address
- shutdown
+!interface vlan 1
+! no ip address dhcp
+! shutdown
 
-interface {{ name }}
- ip address {{ int.ip_addr }} {{ int.netmask }}
- exit
-ip default-gateway {{ int.gw }}
+!interface {{ name }}
+! ip address {{ int.ip_addr }} {{ int.netmask }}
+!ip default-gateway {{ int.gw }}
 {% else %}
 {% endif %}
 {% if int.ipv6_addr %}
 
 interface {{ name }}
  ipv6 address {{ int.ipv6_addr }}/64
- exit
-ipv6 route ::/0 {{ int.gw6 }}
+ipv6 default-gateway {{ int.gw6 }}
 {% else %}
 {% endif %}
 {% endfor %}

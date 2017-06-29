@@ -12,3 +12,10 @@
    cat "configs/{{ inventory_hostname }}/int_desc.cfg" >> "configs/{{ inventory_hostname }}.cfg"
    cat "configs/{{ inventory_hostname }}/unused_int.cfg" >> "configs/{{ inventory_hostname }}.cfg"
   tags: [ config ]
+
+- name: deploy complete config
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: configs/{{ inventory_hostname }}.cfg
+  tags: [ deploy complete ]

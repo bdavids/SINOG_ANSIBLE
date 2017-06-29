@@ -1,6 +1,6 @@
--------------------------------------------------------------
+banner exec $
     Konfiguracija stikala je upravljanja z Ansible.
  Ne spreminjaj konfiguracije - spremembe bodo izgubljene.
   The configuration of this switch is managed by Ansible.
       Don't change it - your changes will be lost.
--------------------------------------------------------------
+$

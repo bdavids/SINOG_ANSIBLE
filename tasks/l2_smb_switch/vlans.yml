@@ -1,0 +1,13 @@
+---
+- name: config vlans
+  template:
+   src: templates/smb_vlans.j2
+   dest: configs/{{ inventory_hostname }}/vlans.cfg
+  tags : [ config ]
+
+- name: deploy vlans
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: configs/{{ inventory_hostname }}/vlans.cfg
+  tags : [ deploy ]
