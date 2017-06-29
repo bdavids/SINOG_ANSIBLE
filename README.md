@@ -38,13 +38,19 @@ ansible-playbook config_cisco_l2.yml --ask-vault --tags "config"
 
 ansible-playbook config_smb_l2.yml --ask-vault --tags "config"
 
-### complete cisco switch config
+### partial switch config
+
+ls configs/cisco_l2/
+
+ls configs/smb_l2/
+
+### complete switch config
 
 cat configs/cisco_l2.cfg
 
 cat configs/smb_l2.cfg
 
-### deploy config files to switch
+### deploy configs files to switch
 
 ansible-playbook config_cisco_l2.yml --ask-vault --tags "deploy"
 
