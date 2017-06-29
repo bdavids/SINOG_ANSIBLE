@@ -36,10 +36,16 @@ ansible-vault encrypt secure/ssh_user
 
 ansible-playbook config_cisco_l2.yml --ask-vault --tags "config"
 
+ansible-playbook config_smb_l2.yml --ask-vault --tags "config"
+
 ### complete cisco switch config
 
 cat configs/cisco_l2.cfg
 
+cat configs/smb_l2.cfg
+
 ### deploy config files to switch
 
 ansible-playbook config_cisco_l2.yml --ask-vault --tags "deploy"
+
+ansible-playbook config_smb_l2.yml --ask-vault --tags "deploy"
