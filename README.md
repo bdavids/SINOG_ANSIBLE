@@ -55,3 +55,15 @@ cat configs/smb_l2.cfg
 ansible-playbook config_cisco_l2.yml --ask-vault --tags "deploy"
 
 ansible-playbook config_smb_l2.yml --ask-vault --tags "deploy"
+
+# Links
+
+ https://github.com/ubajze/ansible_workshop
+
+ https://github.com/ipspace/NetOpsWorkshop
+
+ https://pynet.twb-tech.com/
+
+ https://github.com/napalm-automation/napalm
+
+ https://github.com/dravetech/napalm-ansible-tutorial
