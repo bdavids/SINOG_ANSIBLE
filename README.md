@@ -1,4 +1,4 @@
-# Avtomatizirana konfiguracija omreznih naprav
+# Automated configuration of network devices
 
 ## OS :
 
