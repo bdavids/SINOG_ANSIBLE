@@ -50,7 +50,7 @@ ls configs/sw_smb_l2/smb-l2/
 
 ### complete switch config
 
-cat configs/sw_cisco_l2/cisco-l3.cfg
+cat configs/sw_cisco_l3/cisco-l3.cfg
 
 cat configs/sw_cisco_l2/cisco-l2.cfg
 
