@@ -34,23 +34,31 @@ ansible-vault encrypt secure/ssh_user
 
 ### generate config files
 
+ansible-playbook config_cisco_l3.yml --ask-vault --tags "config"
+
 ansible-playbook config_cisco_l2.yml --ask-vault --tags "config"
 
 ansible-playbook config_smb_l2.yml --ask-vault --tags "config"
 
 ### partial switch config
 
-ls configs/cisco-l2/
+ls configs/sw_cisco_l3/cisco-l3/
 
-ls configs/smb-l2/
+ls configs/sw_cisco_l2/cisco-l2/
+
+ls configs/sw_smb_l2/smb-l2/
 
 ### complete switch config
 
-cat configs/cisco-l2.cfg
+cat configs/sw_cisco_l2/cisco-l3.cfg
 
-cat configs/smb-l2.cfg
+cat configs/sw_cisco_l2/cisco-l2.cfg
+
+cat configs/sw_smb_l2/smb-l2.cfg
 
 ### deploy configs files to switch
+
+ansible-playbook config_cisco_l3.yml --ask-vault --tags "deploy"
 
 ansible-playbook config_cisco_l2.yml --ask-vault --tags "deploy"
 
