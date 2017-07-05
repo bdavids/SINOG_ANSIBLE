@@ -37,7 +37,7 @@ interface {{ g_name }}
  spanning-tree link-type point-to-point
 
 {% if g_int.ip_addr %}
-ip route vrf {{ vrf_name }} 0.0.0.0 0.0.0.0 g_int.guard_ip_addr
+ip route vrf {{ vrf_name }} 0.0.0.0 0.0.0.0 {{ g_int.guard_ip_addr }}
 
 router ospf {{ vrf.id }} vrf {{ vrf_name }}
 {% if g_int.ospf_router_id %}
@@ -49,8 +49,9 @@ router ospf {{ vrf.id }} vrf {{ vrf_name }}
 {% endif %}
 
 {% if g_int.ipv6_addr %}
+ipv6 route vrf {{ vrf_name }} ::/0 {{ g_int.guard_ipv6_addr }}
+
 router ospfv3 {{ vrf.id }}
-ipv6 route vrf {{ vrf_name }} ::/0 g_int.guard_ipv6_addr
 {% if g_int.ospf_router_id %}
  router-id {{ g_int.ip_addr }}
 {% else %}

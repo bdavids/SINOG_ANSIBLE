@@ -3,7 +3,7 @@
 {% for vr in vrfs %}
 {% if vr == name %}
 
-#ip vrf {{ name }}
+!ip vrf {{ name }}
 vrf definition {{ name }}
  address-family ipv4
  address-family ipv6

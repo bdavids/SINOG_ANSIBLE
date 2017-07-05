@@ -11,8 +11,8 @@
   - include: tasks/create_dir_file.yml
     tags: [ config ]
 
-  - include: tasks/banners.yml
-    tags: [ deploy ]
+#  - include: tasks/banners.yml
+#    tags: [ deploy ]
   
   - include: tasks/cisco_ssh.yml
 
