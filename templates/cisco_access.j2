@@ -1,6 +1,6 @@
-{# Access ports #}
-{% if interfaces %}
-{% for name,int in interfaces |dictsort %}
+{# access ports #}
+{% if access %}
+{% for name,int in access |dictsort %}
 
 interface {{ name }}
  switchport mode access

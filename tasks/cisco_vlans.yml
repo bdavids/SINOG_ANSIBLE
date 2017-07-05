@@ -1,0 +1,13 @@
+---
+- name: config vlans
+  template:
+   src: templates/cisco_vlans.j2
+   dest: "{{ configs_dir }}/vlans.cfg"
+  tags: [ config ]
+
+- name: deploy vlans
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir }}/vlans.cfg"
+  tags: [ deploy ]
+

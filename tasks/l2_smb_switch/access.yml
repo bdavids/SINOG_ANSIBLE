@@ -2,12 +2,12 @@
 - name: config access
   template:
    src: templates/smb_access.j2
-   dest: configs/{{ inventory_hostname }}/access_int.cfg
+   dest: "{{ configs_dir }}/access_int.cfg"
   tags : [ config ]
 
 - name: deploy access
   ios_config:
    provider: "{{ cli }}"
    match: none
-   src: configs/{{ inventory_hostname }}/access_int.cfg
+   src: "{{ configs_dir }}/access_int.cfg"
   tags : [ deploy ]

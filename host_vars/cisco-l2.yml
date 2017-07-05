@@ -34,7 +34,7 @@ trunks:
   port_channel_id:
   port_channel_mode:
 
-interfaces:
+access:
  Fa1/0/1:
   data_vlan: 10
   voice_vlan: 20

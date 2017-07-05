@@ -2,11 +2,11 @@
 - name: config access
   template:
    src: templates/cisco_access.j2
-   dest: configs/{{ inventory_hostname }}/access_int.cfg
+   dest: "{{ configs_dir}}/access_int.cfg"
   tags: [ config ]
 
 - name: deploy access
   ios_config:
    provider: "{{ cli }}"
-   src: configs/{{ inventory_hostname }}/access_int.cfg
+   src: "{{ configs_dir}}/access_int.cfg"
   tags: [ deploy ]

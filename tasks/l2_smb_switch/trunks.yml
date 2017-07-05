@@ -2,12 +2,12 @@
 - name: config trunks
   template:
    src: templates/smb_trunks.j2
-   dest: configs/{{ inventory_hostname }}/trunk_int.cfg
+   dest: "{{ configs_dir }}/trunk_int.cfg"
   tags : [ config ]
 
 - name: deploy trunks
   ios_config:
    provider: "{{ cli }}"
    match: none
-   src: configs/{{ inventory_hostname }}/trunk_int.cfg
+   src: "{{ configs_dir }}/trunk_int.cfg"
   tags : [ deploy ]

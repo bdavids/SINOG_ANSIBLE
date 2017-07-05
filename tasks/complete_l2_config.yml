@@ -1,0 +1,21 @@
+---
+- name: complete {{ inventory_hostname }} config
+  shell: |
+   cat "{{ configs_dir}}/ssh_conf.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/default_conf.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/snmp.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/mgmt_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/vlans.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/uplink_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/trunk_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/access_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/int_desc.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/unused_int.cfg" >> "{{ complete_configs }}"
+  tags: [ config ]
+
+- name: deploy complete config
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: "{{ complete_configs }}"
+  tags: [ deploy complete ]

@@ -2,11 +2,11 @@
 - name: config int desc
   template:
    src: templates/cisco_int_desc.j2
-   dest: configs/{{ inventory_hostname }}/int_desc.cfg
+   dest: "{{ configs_dir}}/int_desc.cfg"
   tags: [ config ]
 
 - name: deploy int desc
   ios_config:
    provider: "{{ cli }}"
-   src: configs/{{ inventory_hostname }}/int_desc.cfg
+   src: "{{ configs_dir}}/int_desc.cfg"
   tags: [ deploy ]

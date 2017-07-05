@@ -1,12 +1,25 @@
 ---
+- name: config snmp acls
+  template:
+   src: templates/cisco_snmp_acl.j2
+   dest: "{{ configs_dir }}/snmp_acls.cfg"
+  tags: [ config ]
+
 - name: config snmp
   template:
    src: templates/cisco_snmp.j2
-   dest: configs/{{ inventory_hostname }}//snmp.cfg
+   dest: "{{ configs_dir }}/snmp.cfg"
   tags: [ config ]
+
+- name: deploy snmp acls
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir }}/snmp_acls.cfg"
+#  tags: [ deploy acl ]
+  tags: [ deploy ]
 
 - name: deploy snmp
   ios_config:
    provider: "{{ cli }}"
-   src: configs/{{ inventory_hostname }}//snmp.cfg
+   src: "{{ configs_dir }}/snmp.cfg"
   tags: [ deploy ]

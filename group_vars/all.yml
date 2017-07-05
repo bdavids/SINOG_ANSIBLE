@@ -1,4 +1,6 @@
 ---
+configs_dir: "configs/{{ group_names[0] }}/{{ inventory_hostname }}"
+complete_configs: "configs/{{ group_names[0] }}/{{ inventory_hostname }}.cfg"
 
 transport: cli
 

@@ -2,12 +2,12 @@
 - name: config snmp
   template:
    src: templates/smb_snmp.j2
-   dest: configs/{{ inventory_hostname }}//snmp.cfg
+   dest: "{{ configs_dir }}/snmp.cfg"
   tags: [ config ]
 
 - name: deploy snmp
   ios_config:
    provider: "{{ cli }}"
    match: none
-   src: configs/{{ inventory_hostname }}//snmp.cfg
+   src: "{{ configs_dir }}/snmp.cfg"
   tags: [ deploy snmp ]

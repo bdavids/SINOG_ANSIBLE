@@ -3,11 +3,11 @@
 - name: config default config
   template:
    src: templates/cisco_default.j2
-   dest: configs/{{ inventory_hostname }}/default_conf.cfg
+   dest: "{{ configs_dir}}/default_conf.cfg"
   tags: [ config ]
 
 - name: deploy default config
   ios_config:
    provider: "{{ cli }}"
-   src: configs/{{ inventory_hostname }}/default_conf.cfg
+   src: "{{ configs_dir}}/default_conf.cfg"
   tags: [ deploy ]

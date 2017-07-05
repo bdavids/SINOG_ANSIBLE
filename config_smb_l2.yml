@@ -17,12 +17,12 @@
   - include: tasks/smb_ssh.yml
 
   - include: tasks/smb_default.yml
+ 
+  - include: tasks/smb_vlans.yml
 
   - include: tasks/smb_snmp.yml
 
   - include: tasks/l2_smb_switch/mgmt_int.yml
-
-  - include: tasks/l2_smb_switch/vlans.yml
 
   - include: tasks/l2_smb_switch/uplinks.yml
 
@@ -34,4 +34,4 @@
 
   - include: tasks/smb_unused_int.yml
 
-  - include: tasks/complete_config.yml
+  - include: tasks/complete_l2_config.yml

@@ -17,12 +17,12 @@
   - include: tasks/cisco_ssh.yml
 
   - include: tasks/cisco_default.yml
+  
+  - include: tasks/cisco_vlans.yml
 
   - include: tasks/cisco_snmp.yml
 
   - include: tasks/l2_cisco_switch/mgmt_int.yml
-
-  - include: tasks/l2_cisco_switch/vlans.yml
 
   - include: tasks/l2_cisco_switch/uplinks.yml
 
@@ -34,5 +34,5 @@
 
   - include: tasks/cisco_unused_int.yml
 
-  - include: tasks/complete_config.yml
+  - include: tasks/complete_l2_config.yml
 

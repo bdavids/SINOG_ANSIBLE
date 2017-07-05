@@ -2,12 +2,12 @@
 - name: config mgmt
   template:
    src: templates/smb_mgmt_int.j2
-   dest: configs/{{ inventory_hostname }}/mgmt_int.cfg
+   dest: "{{ configs_dir }}/mgmt_int.cfg"
   tags : [ config ]
 
 - name: deploy mgmt
   ios_config:
    provider: "{{ cli }}"
    match: none
-   src: configs/{{ inventory_hostname }}/mgmt_int.cfg
+   src: "{{ configs_dir }}/mgmt_int.cfg"
   tags : [ deploy ]
