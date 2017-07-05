@@ -1,0 +1,26 @@
+{% if loopback_interface %}
+{% for lbck_name,lbck_int in loopback_interface|dictsort %}
+
+interface {{ lbck_name }}
+ description {{ lbck_int.name }}, {{ lbck_int.name }}
+ ip address {{ lbck_int.ip_addr }} 255.255.255.255
+{% if lbck_int.ospf_area is number %}
+ ip ospf {{ ospf_GLOBAL_id }} area {{ lbck_int.ospf_area }}
+{% else %}
+{% endif %}
+ ipv6 address {{ lbck_int.ipv6_addr }}/128
+ ipv6 enable
+{% if lbck_int.ospf_area is number %}
+ ipv6 ospf {{ ospf_GLOBAL_id }} area {{ lbck_int.ospf_area }}
+
+ router ospf {{ ospf_GLOBAL_id }}
+ router-id {{ lbck_int.ip_addr }}
+
+ ipv6 router ospf {{ ospf_GLOBAL_id }}
+ router-id {{ lbck_int.ip_addr }}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+

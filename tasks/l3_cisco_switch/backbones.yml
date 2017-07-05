@@ -1,0 +1,13 @@
+---
+- name: "config backbones"
+  template:
+   src: templates/cisco_l3_backbones.j2
+   dest: "{{ configs_dir}}/backbone_int.cfg"
+  tags: [ config ]
+
+- name: "deploy backbones"
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir}}/backbone_int.cfg"
+  tags: [ deploy backbone ]
+

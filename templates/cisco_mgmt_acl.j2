@@ -1,0 +1,44 @@
+{% if line_vty_acl_v4 %}
+ip access-list standard {{ line_vty_acl_v4 }}
+{% for name,admin in admins|dictsort %}
+{% if admin.ipv4 %}
+ remark {{ name }}
+ permit {{ admin.ipv4 }}
+{% else %}
+{% endif %}
+{% endfor %}
+{% if skrbnik %}
+{% for name,admin in skrbnik|dictsort %}
+{% if admin.ipv4 %}
+ remark {{ name }}
+ permit {{ admin.ipv4 }}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+ exit
+{% else %}
+{% endif %}
+
+{% if line_vty_acl_v6 %}
+ipv6 access-list {{ line_vty_acl_v6 }}
+{% for name,admin in admins|dictsort %}
+{% if admin.ipv6 %}
+ remark {{ name }}
+ permit ipv6 host {{ admin.ipv6 }} any
+{% else %}
+{% endif %}
+{% endfor %}
+{% if skrbnik %}
+{% for name,admin in skrbnik|dictsort %}
+{% if admin.ipv6 %}
+ remark {{ name }}
+ permit ipv6 host {{ admin.ipv6 }} any
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+{% else %}
+{% endif %}

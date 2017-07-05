@@ -1,0 +1,31 @@
+---
+- name: complete {{ inventory_hostname }} config
+  shell: |
+   cat "{{ configs_dir}}/ssh_conf.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/default_conf.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/secure_vty.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/vlans.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/snmp.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/ospf.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/int_loopback.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/int_ptp_vlan.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/int_l3_vlan.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/vrfs.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/vrf_ospf.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/int_guard_vrf.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/vrf_int_ptp_vlan.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/vrf_int_l3_vlan.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/backbone_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/uplink_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/trunk_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/access_int.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/int_desc.cfg" >> "{{ complete_configs }}"
+   cat "{{ configs_dir}}/unused_int.cfg" >> "{{ complete_configs }}"
+  tags: [ config ]
+
+- name: deploy complete config
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: configs/{{ inventory_hostname }}.cfg
+  tags: [ deploy complete ]

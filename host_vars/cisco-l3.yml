@@ -1,0 +1,140 @@
+---
+vlans: [ 10,20,30,200,201,500,501,550,551 ]
+
+vrfs: [ MGMT, SRV_X ]
+
+snmp_location: lab
+
+line_vty_acl_v4: ADMIN
+line_vty_acl_v6: ADMINv6
+snmp_acl_v4: SNMP
+snmp_acl_v6: SNMPv6
+
+loopback_interface:
+ Loopback0:
+  name: "CISCO-L3"
+  ip_addr: 10.127.127.1
+  ipv6_addr: 2001:db8:127::1
+  ospf_area: 0
+
+vrf_guard_interfaces:
+ Vlan500:
+  vrf: "MGMT"
+  name: "V_MGMT_2GUARD"
+  ip_addr: 172.16.50.6
+  guard_ip_addr: 172.16.50.1
+  ipv6_addr: 2001:db8:500::6
+  guard_ipv6_addr: 2001:db8:500::1
+  ospf_router_id: "yes"
+  stp_priority: 24576
+
+ Vlan550:
+  vrf: "SRV_X"
+  name: "V_SRV_X_2GUARD"
+  ip_addr: 172.16.51.6
+  guard_ip_addr: 172.16.51.1
+  ipv6_addr: 2001:db8:51::6
+  guard_ipv6_addr: 2001:db8:51::1
+  ospf_router_id: "yes"
+  stp_priority: 24576
+
+vrf_l3_ptp_interfaces:
+ Vlan501:
+  vrf: "MGMT"
+  name: "V_MGMT_SINOG2GO6"
+  ip_addr: 172.16.60.1
+  ipv6_addr: 2001:db8:60::1
+  ospf_router_id: "yes"
+  ospf_cost: 100
+  ospf_area: 0
+  ospf_key: 10
+  ospf_auth: sinog
+  stp_priority: 24576
+
+ Vlan551:
+  vrf: "SRV_X"
+  name: "V_SRV_X_SINOG2GO6"
+  ip_addr: 172.16.61.1
+  ipv6_addr: 2001:db8:61::1
+  ospf_router_id: "yes"
+  ospf_cost: 100
+  ospf_area: 0
+  ospf_key: 10
+  ospf_auth: sinog
+  stp_priority: 24576
+
+l3_ptp_interfaces:
+ Vlan201:
+  name: "SINOG2GO6"
+  ip_addr: 172.16.0.1
+  ipv6_addr: 2001:db8::1
+  ospf_cost: 100
+  ospf_area: 0
+  ospf_key: 1
+  ospf_auth: sinog
+  stp_priority: 12288
+
+vrf_l3_interfaces:
+ Vlan30:
+  vrf: "MGMT"
+  name: "SINOG-30"
+  ip_addr: 172.16.30.1
+  netmask: 255.255.255.0
+  ip_helper_1: 
+  ip_helper_2:
+  ipv6_addr: 2001:db8:30::1
+  ipv6_m_flag: 1
+  ospf_area: 0
+  stp_priority: 24576
+
+ Vlan40:
+  vrf: "SRV_X"
+  name: "SINOG-40"
+  ip_addr: 172.16.40.1
+  netmask: 255.255.255.0
+  ip_helper_1: 
+  ip_helper_2:
+  ipv6_addr: 2001:db8:40::1
+  ipv6_m_flag: 1
+  ospf_area: 0
+  stp_priority: 24576
+
+l3_interfaces:
+ Vlan10:
+  name: "SINOG-10"
+  ip_addr: 192.168.10.1
+  netmask: 255.255.255.192
+  ip_helper_1: 192.168.100.100
+  ip_helper_2:
+  ipv6_addr: 2001:db8:10::1
+  ipv6_m_flag: 1 
+  ospf_area: 0
+  stp_priority: 28672
+
+ Vlan20:
+  name: "SINOG-20"
+  ip_addr: 192.168.20.1
+  netmask: 255.255.255.0
+  ip_helper_1: 
+  ip_helper_2:
+  ipv6_addr: 2001:db8:20::1
+  ipv6_m_flag: 1
+  ospf_area: 0
+  stp_priority: 28672
+
+backbones:
+ Fa1/0/44:
+  vlans: 201,500,501
+  stp_guard: "loop"
+  port_channel_id:
+  port_channel_mode:
+ 
+uplinks:
+
+trunks:
+
+access:
+
+unused_interfaces:
+
+descriptions:

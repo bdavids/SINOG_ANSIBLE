@@ -1,0 +1,62 @@
+---
+- name: "config vrf"
+  template:
+   src: templates/cisco_l3_vrf.j2
+   dest: "{{ configs_dir }}/vrfs.cfg"
+  tags: [ config ]
+
+- name: "config ospf vrf"
+  template:
+   src: templates/cisco_l3_ospf_vrf.j2
+   dest: "{{ configs_dir }}/vrf_ospf.cfg"
+  tags: [ config ]
+
+- name: "config vrf guard vlan interface"
+  template:
+   src: templates/cisco_l3_int_guard_vrf.j2
+   dest: "{{ configs_dir }}/int_guard_vrf.cfg"
+  tags: [ config ]
+
+- name: "config vrf ptp vlan interface"
+  template:
+   src: templates/cisco_l3_int_ptp_vlan_vrf.j2
+   dest: "{{ configs_dir }}/vrf_int_ptp_vlan.cfg"
+  tags: [ config ]
+
+- name: "config vrf l3 vlan interface"
+  template:
+   src: templates/cisco_l3_int_l3_vlan_vrf.j2
+   dest: "{{ configs_dir }}/vrf_int_l3_vlan.cfg"
+  tags: [ config ]
+
+- name: "deploy vrf"
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir}}/vrfs.cfg"
+  tags: [ deploy ]
+
+- name: "deploy vrf ospf"
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir}}/vrf_ospf.cfg"
+  tags: [ deploy ]
+
+- name: "deploy vrf guard interface"
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir }}/int_guard_vrf.cfg"
+  tags: [ deploy ]
+
+- name: "deploy vrf ptp interface"
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: "{{ configs_dir}}/vrf_int_ptp_vlan.cfg"
+  tags: [ deploy ]
+
+- name: "deploy vrf l3 vlan interface"
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: "{{ configs_dir}}/vrf_int_l3_vlan.cfg"
+  tags: [ deploy ]

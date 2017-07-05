@@ -1,0 +1,43 @@
+---
+- hosts: sw_cisco_l3
+
+  gather_facts: no
+  connection: local
+
+  vars_files:
+  - secure/ssh_user
+
+  tasks:
+  - include: tasks/create_dir_file.yml
+    tags: [ config ]
+
+  - include: tasks/banners.yml
+    tags: [ deploy ]
+  
+  - include: tasks/cisco_ssh.yml
+
+  - include: tasks/cisco_default.yml
+  
+  - include: tasks/cisco_secure_vty.yml
+
+  - include: tasks/cisco_vlans.yml
+
+  - include: tasks/cisco_snmp.yml
+
+  - include: tasks/l3_cisco_switch/global_routing.yml
+
+  - include: tasks/l3_cisco_switch/vrf_routing.yml
+
+  - include: tasks/l3_cisco_switch/backbones.yml
+
+  - include: tasks/l2_cisco_switch/uplinks.yml
+
+  - include: tasks/l2_cisco_switch/trunks.yml
+
+  - include: tasks/l2_cisco_switch/access.yml
+
+  - include: tasks/cisco_int_desc.yml
+
+  - include: tasks/cisco_unused_int.yml
+
+  - include: tasks/complete_l3_config.yml

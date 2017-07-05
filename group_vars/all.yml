@@ -32,3 +32,15 @@ snmp_group: SINOG
 snmp_user: sinog
 snmp_auth: sinog1
 snmp_priv: sinog2
+
+admins:
+ ADMIN: { ipv4: "10.0.1.10", ipv6: "2001:db8:1::10" }
+
+monitoring:
+ LIBRENMS: { ipv4: "10.0.1.11", ipv6: "2001:db8:1::11" }
+
+ospf_GLOBAL_id: 1
+
+all_vrfs:
+ MGMT: { id: 500 }
+ SRV_X: { id: 501 }

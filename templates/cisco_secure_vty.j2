@@ -1,0 +1,10 @@
+line vty 0 15
+{% if line_vty_acl_v4 and line_vty_acl_v6 %}
+ access-class {{ line_vty_acl_v4 }} in vrf-also
+ ipv6 access-class {{ line_vty_acl_v6 }} in
+{% elif line_vty_acl_v4 %}
+ access-class {{ line_vty_acl_v4 }} in vrf-also
+{% elif line_vty_acl_v6 %}
+ ipv6 access-class {{ line_vty_acl_v6 }} in
+{% else %}
+{% endif %}

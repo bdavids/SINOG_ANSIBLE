@@ -1,0 +1,25 @@
+---
+- name: config mgmt acls
+  template:
+   src: templates/cisco_mgmt_acl.j2
+   dest: "{{ configs_dir }}/mgmt_acls.cfg"
+  tags : [ config ]
+
+- name: config secure vty
+  template:
+   src: templates/cisco_secure_vty.j2
+   dest: "{{ configs_dir }}/secure_vty.cfg"
+  tags: [ config ]
+
+- name: deploy mgmt acl
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir }}/mgmt_acls.cfg"
+#  tags: [ deploy acl ]
+  tags: [ deploy ]
+
+- name: deploy secure vty
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir }}/secure_vty.cfg"
+  tags: [ deploy ]

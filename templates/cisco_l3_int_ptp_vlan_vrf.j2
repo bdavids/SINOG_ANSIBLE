@@ -1,0 +1,81 @@
+{% if vrf_l3_ptp_interfaces %}
+{% for ptp_name,ptp_int in vrf_l3_ptp_interfaces |dictsort %}
+{% set vl_id = ptp_name.find('n') %}
+{% if vl_id > 0 %}
+{% set vl_id = ptp_name[vl_id+1:] | int %}
+{% for vl_name,vlan in all_vlans|dictsort %}
+{% if vl_id == vlan.id %}
+{% for vl in vlans %}
+{% if vl_id == vl %}
+{% for vrf_name,vrf in all_vrfs|dictsort %}
+{% if ptp_int.vrf == vrf_name %}
+{% for vr in vrfs %}
+{% if ptp_int.vrf == vr %}
+
+spanning-tree vlan {{ vl_id }} priority {{ ptp_int.stp_priority }}
+
+interface {{ ptp_name }}
+ description {{ ptp_int.name }}, {{ ptp_int.name }}
+{% if ptp_int.ip_addr %}
+! ip vrf forwarding {{ ptp_int.vrf }}
+ vrf forwarding {{ ptp_int.vrf }}
+ ip address {{ ptp_int.ip_addr }} 255.255.255.254
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip ospf message-digest-key {{ ptp_int.ospf_key }} md5 {{ ptp_int.ospf_auth }}
+ ip ospf {{ vrf.id }} area {{ ptp_int.ospf_area }}
+ ip ospf network point-to-point
+ ip ospf cost {{ ptp_int.ospf_cost }}
+{% else %}
+{% endif %}
+{% if ptp_int.ipv6_addr %}
+ ipv6 address {{ ptp_int.ipv6_addr }}/127
+ ipv6 enable
+ ipv6 nd prefix default no-advertise
+ ipv6 nd ra suppress
+ no ipv6 redirects
+ no ipv6 unreachables
+ ospfv3 {{ vrf.id }} ipv6 area {{ ptp_int.ospf_area }}
+ ospfv3 {{ vrf.id }} ipv6 network point-to-point
+ ospfv3 {{ vrf.id }} ipv6 cost {{ ptp_int.ospf_cost }}
+{% else %}
+{% endif %}
+ spanning-tree link-type point-to-point
+
+{% if ptp_int.ip_addr %}
+router ospf {{ vrf.id }} vrf {{ vrf_name }}
+{% if ptp_int.ospf_router_id %}
+ router-id {{ ptp_int.ip_addr }}
+{% else %}
+{% endif %}
+ no passive-interface {{ ptp_name }}
+{% else %}
+{% endif %}
+{% if ptp_int.ipv6_addr %}
+router ospfv3 {{ vrf.id }}
+{% if ptp_int.ospf_router_id %}
+ router-id {{ ptp_int.ip_addr }}
+{% else %}
+{% endif %}
+ address-family ipv6 unicast vrf {{ vrf_name }}
+  no passive-interface {{ ptp_name }}
+{% else %}
+{% endif %}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% endif %}

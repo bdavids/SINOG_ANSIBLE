@@ -1,3 +1,6 @@
+[sw_cisco_l3]
+cisco-l3 ansible_ssh_host="cisco-l3.sinog.si"
+
 [sw_cisco_l2]
 cisco-l2 ansible_ssh_host="cisco-l2.sinog.si"
 

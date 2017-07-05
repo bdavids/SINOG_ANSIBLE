@@ -1,0 +1,50 @@
+---
+- name: "config ospf config"
+  template:
+   src: templates/cisco_l3_ospf.j2
+   dest: "{{ configs_dir }}/ospf.cfg"
+  tags: [ config ]
+
+- name: "config loopback interface"
+  template:
+   src: templates/cisco_l3_int_loopback.j2
+   dest: "{{ configs_dir }}/int_loopback.cfg"
+  tags: [ config ]
+
+- name: "config ptp vlan interface"
+  template:
+   src: templates/cisco_l3_int_ptp_vlan.j2
+   dest: "{{ configs_dir }}/int_ptp_vlan.cfg"
+  tags: [ config ]
+
+- name: "config l3 vlan interface"
+  template:
+   src: templates/cisco_l3_int_l3_vlan.j2
+   dest: "{{ configs_dir }}/int_l3_vlan.cfg"
+  tags: [ config ]
+
+- name: "deploy ospf config"
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir }}/ospf.cfg"
+  tags: [ deploy ]
+
+- name: "deploy loopback interface"
+  ios_config:
+   provider: "{{ cli }}"
+   src: "{{ configs_dir }}/int_loopback.cfg"
+  tags: [ deploy ]
+ 
+- name: "deploy ptp vlan interface"
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: "{{ configs_dir }}/int_ptp_vlan.cfg"
+  tags: [ deploy ]
+
+- name: "deploy l3 vlan interface"
+  ios_config:
+   provider: "{{ cli }}"
+   match: none
+   src: "{{ configs_dir }}/int_l3_vlan.cfg"
+  tags: [ deploy ]
