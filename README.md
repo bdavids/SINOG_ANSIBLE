@@ -75,3 +75,5 @@ ansible-playbook config_smb_l2.yml --ask-vault --tags "deploy"
  https://github.com/napalm-automation/napalm
 
  https://github.com/dravetech/napalm-ansible-tutorial
+
+ https://my.ipspace.net/bin/list?id=Ansible#SAMPLES
