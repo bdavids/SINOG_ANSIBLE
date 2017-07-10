@@ -6,12 +6,12 @@ interface vlan 1
  no ip address dhcp
  shutdown
 
-!interface {{ name }}
-! ip address {{ int.ip_addr }} {{ int.netmask }}
-!ip default-gateway {{ int.gw }}
-{% else %}
-{% endif %}
-{% if int.ipv6_addr %}
+interface {{ name }}
+ ip address {{ int.ip_addr }} {{ int.netmask }}
+ip default-gateway {{ int.gw }}
+{%   else %}
+{%   endif %}
+{%   if int.ipv6_addr %}
 
 interface {{ name }}
  ipv6 address {{ int.ipv6_addr }}/64
