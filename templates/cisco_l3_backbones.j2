@@ -1,7 +1,7 @@
 {# backbone ports #}
 {% if backbones %}
-{% for name,backbone in backbones |dictsort %}
-{% if backbone.port_channel_id %}
+{%  for name,backbone in backbones |dictsort %}
+{%   if backbone.port_channel_id %}
 
 interface Po{{ backbone.port_channel_id }}
 ! switchport trunk encapsulation dot1q
@@ -9,10 +9,10 @@ interface Po{{ backbone.port_channel_id }}
  switchport mode trunk
  switchport nonegotiate
  no keepalive
-{% if backbone.stp_guard %}
+{%    if backbone.stp_guard %}
  spanning-tree guard {{ backbone.stp_guard }}
-{% else %}
-{% endif %}
+{%    else %}
+{%    endif %}
 interface {{ name }}
 ! switchport trunk encapsulation dot1q
  switchport trunk allowed vlan {{ backbone.vlans }}
@@ -20,7 +20,7 @@ interface {{ name }}
  switchport nonegotiate
  no keepalive
  channel-group {{ backbone.port_channel_id }} mode {{ backbone.port_channel_mode }}
-{% else %}
+{%   else %}
 
 interface {{ name }}
 ! switchport trunk encapsulation dot1q
@@ -28,12 +28,12 @@ interface {{ name }}
  switchport mode trunk
  switchport nonegotiate
  no keepalive
-{% endif %}
-{% if backbone.stp_guard %}
+{%   endif %}
+{%   if backbone.stp_guard %}
  spanning-tree guard {{ backbone.stp_guard }}
-{% else %}
-{% endif %}
+{%   else %}
+{%   endif %}
  no shutdown
-{% endfor %}
+{%  endfor %}
 {% else %}
 {% endif %}
