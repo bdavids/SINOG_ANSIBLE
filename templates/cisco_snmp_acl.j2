@@ -1,24 +1,24 @@
 {% if snmp_acl_v4 %}
 ip access-list standard {{ snmp_acl_v4 }}
-{% for name,monitor in monitoring|dictsort %}
-{% if monitor.ipv4 %}
+{%  for name,monitor in monitoring|dictsort %}
+{%   if monitor.ipv4 %}
  remark {{ name }}
  permit {{ monitor.ipv4 }}
-{% else %}
-{% endif %}
-{% endfor %}
+{%   else %}
+{%   endif %}
+{%  endfor %}
  exit
 {% else %}
 {% endif %}
 
 {% if snmp_acl_v6 %}
 ipv6 access-list {{ snmp_acl_v6 }}
-{% for name,monitor in monitoring|dictsort %}
-{% if monitor.ipv6 %}
+{%  for name,monitor in monitoring|dictsort %}
+{%   if monitor.ipv6 %}
  remark {{ name }}
  permit ipv6 host {{ monitor.ipv6 }} any
-{% else %}
-{% endif %}
-{% endfor %}
+{%   else %}
+{%   endif %}
+{%  endfor %}
 {% else %}
 {% endif %}
