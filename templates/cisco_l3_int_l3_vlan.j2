@@ -1,64 +1,64 @@
 {% if l3_interfaces %}
-{% for l3_name,l3_int in l3_interfaces |dictsort %}
-{% set vl_id = l3_name.find('n') %}
-{% if vl_id > 0 %}
-{% set vl_id = l3_name[vl_id+1:] | int %}
-{% for vl_name,vlan in all_vlans|dictsort %}
-{% if vl_id == vlan.id %}
-{% for vl in vlans %}
-{% if vl_id == vl %}
+{%  for l3_name,l3_int in l3_interfaces |dictsort %}
+{%   set vl_id = l3_name.find('n') %}
+{%   if vl_id > 0 %}
+{%    set vl_id = l3_name[vl_id+1:] | int %}
+{%    for vl_name,vlan in all_vlans|dictsort %}
+{%     if vl_id == vlan.id %}
+{%      for vl in vlans %}
+{%       if vl_id == vl %}
 
 spanning-tree vlan {{ vl_id }} priority {{ l3_int.stp_priority }}
 
 interface {{ l3_name }}
  description {{ l3_int.name }}, {{ l3_int.name }}
-{% if l3_int.ip_addr and l3_int.netmask %}
+{%        if l3_int.ip_addr and l3_int.netmask %}
  ip address {{ l3_int.ip_addr }} {{ l3_int.netmask }}
-{% if l3_int.ip_helper_1 %}
+{%         if l3_int.ip_helper_1 %}
  ip helper-address {{ l3_int.ip_helper_1 }}
-{% else %}
-{% endif %}
-{% if l3_int.ip_helper_2 %}
+{%         else %}
+{%         endif %}
+{%         if l3_int.ip_helper_2 %}
  ip helper-address {{ l3_int.ip_helper_2 }}
-{% else %}
-{% endif %}
+{%         else %}
+{%         endif %}
  no ip redirects
- no ip unreachable
+ no ip unreachables
  no ip proxy-arp
  ip pim dense-mode
  ip cgmp
  ip sap listen
-{% if l3_int.ospf_area is number %}
+{%         if l3_int.ospf_area is number %}
  ip ospf {{ ospf_GLOBAL_id }} area {{ l3_int.ospf_area }}
-{% else %}
-{% endif %}
-{% else %}
-{% endif %}
-{% if l3_int.ipv6_addr %}
+{%         else %}
+{%         endif %}
+{%        else %}
+{%        endif %}
+{%        if l3_int.ipv6_addr %}
  ipv6 address {{ l3_int.ipv6_addr }}/64
  ipv6 enable
-{% if l3_int.ipv6_m_flag %}
+{%         if l3_int.ipv6_m_flag %}
  ipv6 nd prefix default 2592000 604800 no-autoconfig
  ipv6 nd managed-config-flag
-{% else %}
-{% endif %}
  ipv6 nd router-preference High
  no ipv6 redirects
- no ipv6 unreachable
-{% else %}
-{% endif %}
-{% if l3_int.ospf_area is number %}
+ no ipv6 unreachables
+{%         else %}
+{%         endif %}
+{%         if l3_int.ospf_area is number %}
  ipv6 ospf {{ ospf_GLOBAL_id }} area {{ l3_int.ospf_area }}
-{% else %}
-{% endif %}
-{% else %}
-{% endif %}
-{% endfor %}
-{% else %}
-{% endif %}
-{% endfor %}
-{% else %}
-{% endif %}
-{% endfor %}
+{%         else %}
+{%         endif %}
+{%        else %}
+{%        endif %}
+{%       else %}
+{%       endif %}
+{%      endfor %}
+{%     else %}
+{%     endif %}
+{%    endfor %}
+{%   else %}
+{%   endif %}
+{%  endfor %}
 {% else %}
 {% endif %}
