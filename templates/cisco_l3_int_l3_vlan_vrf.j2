@@ -27,7 +27,7 @@ interface {{ l3_name }}
 {%           else %}
 {%           endif %}
  no ip redirects
- no ip unreachable
+ no ip unreachables
  no ip proxy-arp
  ip pim dense-mode
  ip cgmp
@@ -48,7 +48,7 @@ interface {{ l3_name }}
 {%           endif %}
  ipv6 nd router-preference High
  no ipv6 redirects
- no ipv6 unreachable
+ no ipv6 unreachables
 {%           if l3_int.ospf_area is number %}
  ospfv3 {{ vrf.id }} ipv6 area {{ l3_int.ospf_area }}
 {%           else %}

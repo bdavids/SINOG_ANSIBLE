@@ -1,6 +1,6 @@
 {# Non use interface #}
 {% if unused_interfaces %}
-{% for i in unused_interfaces %}
+{%  for i in unused_interfaces %}
 
 interface {{ i }}
  shutdown
@@ -17,6 +17,6 @@ interface {{ i }}
  no ip dhcp snooping trust
  spanning-tree portfast auto
  no spanning-tree bpduguard
-{% endfor %}
+{%  endfor %}
 {% else %}
 {% endif %}

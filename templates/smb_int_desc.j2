@@ -1,8 +1,8 @@
 {% if descriptions %}
-{% for name,desc in descriptions |dictsort %}
+{%  for name,desc in descriptions |dictsort %}
 
 interface {{ name }}
  description "{{ desc }}"
-{% endfor %}
+{%  endfor %}
 {% else %}
 {% endif %}
