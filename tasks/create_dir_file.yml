@@ -1,4 +1,6 @@
 ---
 - file: path={{ configs_dir }} state=directory
+  changed_when: no # Don't report changes
 
 - file: path={{ complete_configs }} state=absent
+  changed_when: no # Don't report changes

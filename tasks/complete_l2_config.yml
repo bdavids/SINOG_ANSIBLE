@@ -11,6 +11,7 @@
    cat "{{ configs_dir}}/access_int.cfg" >> "{{ complete_configs }}"
    cat "{{ configs_dir}}/int_desc.cfg" >> "{{ complete_configs }}"
    cat "{{ configs_dir}}/unused_int.cfg" >> "{{ complete_configs }}"
+  changed_when: no # Don't report changes
   tags: [ config ]
 
 - name: deploy complete config
