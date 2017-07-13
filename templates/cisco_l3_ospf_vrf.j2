@@ -1,9 +1,9 @@
 {% if vrfs %}
-{% for name,vrf in all_vrfs|dictsort %}
-{% for vr in vrfs %}
-{% if vr == name %}
-{% for ptp_name,ptp_int in vrf_l3_ptp_interfaces |dictsort %}
-{% if ptp_int.vrf == vr and ptp_int.ip_addr and ptp_int.ospf_router_id %}
+ {% for name,vrf in all_vrfs|dictsort %}
+  {% for vr in vrfs %}
+   {% if vr == name %}
+    {% for ptp_name,ptp_int in vrf_l3_ptp_interfaces |dictsort %}
+     {% if ptp_int.vrf == vr and ptp_int.ip_addr and ptp_int.ospf_router_id %}
 
 router ospf {{ vrf.id }} vrf {{ name }}
  router-id {{ ptp_int.ip_addr }}
@@ -12,9 +12,9 @@ router ospf {{ vrf.id }} vrf {{ name }}
  capability vrf-lite
  area 0 authentication message-digest
  passive-interface default
-{% else %}
-{% endif %}
-{% if ptp_int.vrf == vr and ptp_int.ipv6_addr and ptp_int.ospf_router_id %}
+     {% else %}
+     {% endif %}
+     {% if ptp_int.vrf == vr and ptp_int.ipv6_addr and ptp_int.ospf_router_id %}
 router ospfv3 {{ vrf.id }}
  router-id {{ ptp_int.ip_addr }}
  log-adjacency-changes detail
@@ -22,12 +22,12 @@ router ospfv3 {{ vrf.id }}
  address-family ipv6 unicast vrf {{ name }}
   passive-interface default
   capability vrf-lite
-{% else %}
-{% endif %}
-{% endfor %}
-{% else %}
-{% endif %}
-{% endfor %}
-{% endfor %}
+     {% else %}
+     {% endif %}
+    {% endfor %}
+   {% else %}
+   {% endif %}
+  {% endfor %}
+ {% endfor %}
 {% else %}
 {% endif %}
