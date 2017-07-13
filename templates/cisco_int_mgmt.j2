@@ -19,8 +19,8 @@ interface {{ name }}
  ipv6 address {{ int.ipv6_addr }}/64
  exit
 ipv6 route ::/0 {{ int.gw6 }}
-{%    else %}
-{%    endif %}
+{%   else %}
+{%   endif %}
 {%  endfor %}
 {% else %}
 {% endif %}
