@@ -40,7 +40,7 @@ access:
 
  range Fa2-3:
   data_vlan: 10
-  voice_vlan: 20
+  voice_vlan:
   port_sec_mode:
   port_sec_action:
   port_sec_max:
