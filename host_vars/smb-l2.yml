@@ -1,5 +1,9 @@
 ---
 
+boot: sx300_boot-13506.rfb
+image: sx300_fw-1476.ros
+new_image: image-2
+
 mgmt:
  Vlan200:
   ip_addr: 192.168.200.3

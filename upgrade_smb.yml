@@ -1,0 +1,33 @@
+---
+- hosts: sw_smb_l2
+
+  gather_facts: no
+  connection: local 
+
+  vars_files:
+  - secure/ssh_user
+
+  tasks:
+  - name: upgrade boot
+    ios_command:
+     provider: "{{ cli }}"
+     commands:
+      - "copy tftp://{{ tftp_server }}/{{ boot }} boot"
+      - "copy running-config startup-config\nY"
+    tags: [ boot ]
+
+  - name: upgrade os
+    ios_command:
+     provider: "{{ cli }}"
+     commands:
+      - "copy tftp://{{ tftp_server }}/{{ image }} image"
+      - "boot system {{ new_image }}"
+      - "copy running-config startup-config\nY"
+    tags: [ image ]
+  
+  - name: reload
+    ios_command:
+     provider: "{{ cli }}"
+     commands:
+      - "reload at 5:00\nY"
+    tags: [ reload ]
