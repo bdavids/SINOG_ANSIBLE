@@ -66,14 +66,15 @@ ansible-playbook config_smb_l2.yml --ask-vault --tags "deploy"
 
 ### upgrade smb switch
 
-ansible-playbook upgrade_smb.yml -t "boot"
+ansible-playbook upgrade_smb.yml --ask-vault --list-tags
 
-ansible-playbook upgrade_smb.yml -t "image"
+ansible-playbook upgrade_smb.yml --ask-vault
 
-ansible-playbook upgrade_smb.yml -t "reload"
+### upgrade cisco l2 switch
 
-ansible-playbook upgrade_smb.yml
+ansible-playbook upgrade_cisco_l2.yml --ask-vault --list-tags
 
+ansible-playbook upgrade_cisco_l2.yml --ask-vault
 
 # Links
 

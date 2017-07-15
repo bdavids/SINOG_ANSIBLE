@@ -1,0 +1,42 @@
+---
+- hosts: sw_cisco_l2
+
+  gather_facts: no
+  connection: local
+
+  vars_files:
+  - secure/ssh_user
+
+  tasks:
+  - name: delete os
+    ios_command:
+     provider: "{{ cli }}"
+     commands :
+      - "delete /recursive /force flash:{{ old_img }}\n"
+    tags: [ delete ]
+
+  - name: upgrade os
+    cisco_file_transfer:
+     source_file=ios/{{ act_img }}
+     dest_file={{ act_img }}
+     enable_scp=yes
+     overwrite=false
+     host={{ ansible_ssh_host }}
+     username={{ username }}
+     password={{ password }}
+    tags: [ upgrade ]
+
+  - name: set boot
+    ios_config:
+     provider: "{{ cli }}"
+     commands :
+      - "boot system flash:{{ act_img }}"
+      - "do wr"
+    tags: [ boot ]
+
+  - name: set reload
+    ios_command:
+     provider: "{{ cli }}"
+     commands :
+      - "reload at 5:00\n"
+    tags: [ reload ]
