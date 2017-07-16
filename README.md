@@ -70,7 +70,7 @@ ansible-playbook upgrade_smb.yml --ask-vault --list-tags
 
 ansible-playbook upgrade_smb.yml --ask-vault
 
-### upgrade cisco l2 switch
+### upgrade cisco l2 switch ( https://pynet.twb-tech.com/blog/automation/cisco-ios.html )
 
 ansible-playbook upgrade_cisco_l2.yml --ask-vault --list-tags
 
@@ -83,8 +83,6 @@ ansible-playbook upgrade_cisco_l2.yml --ask-vault
  https://github.com/ipspace/NetOpsWorkshop
 
  https://pynet.twb-tech.com/
-
- https://pynet.twb-tech.com/blog/automation/cisco-ios.html
 
  https://github.com/napalm-automation/napalm
 
