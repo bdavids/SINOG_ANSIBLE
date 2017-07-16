@@ -84,6 +84,8 @@ ansible-playbook upgrade_cisco_l2.yml --ask-vault
 
  https://pynet.twb-tech.com/
 
+ https://pynet.twb-tech.com/blog/automation/cisco-ios.html
+
  https://github.com/napalm-automation/napalm
 
  https://github.com/dravetech/napalm-ansible-tutorial
