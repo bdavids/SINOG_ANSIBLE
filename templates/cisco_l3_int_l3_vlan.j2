@@ -14,12 +14,10 @@ interface {{ l3_name }}
  description {{ l3_int.name }}, {{ l3_int.name }}
 {%        if l3_int.ip_addr and l3_int.netmask %}
  ip address {{ l3_int.ip_addr }} {{ l3_int.netmask }}
-{%         if l3_int.ip_helper_1 %}
- ip helper-address {{ l3_int.ip_helper_1 }}
-{%         else %}
-{%         endif %}
-{%         if l3_int.ip_helper_2 %}
- ip helper-address {{ l3_int.ip_helper_2 }}
+{%         if l3_int.ip_helper %}
+{%          for ip_helper in l3_int.ip_helper %}
+ ip helper-address {{ ip_helper }}
+{%          endfor %}
 {%         else %}
 {%         endif %}
  no ip redirects
@@ -40,9 +38,15 @@ interface {{ l3_name }}
 {%         if l3_int.ipv6_m_flag %}
  ipv6 nd prefix default 2592000 604800 no-autoconfig
  ipv6 nd managed-config-flag
+{%         else %}
+{%         endif %}
  ipv6 nd router-preference High
  no ipv6 redirects
  no ipv6 unreachables
+{%         if l3_int.ipv6_helper %}
+{%          for ipv6_helper in l3_int.ipv6_helper %}
+ ipv6 dhcp relay destination {{ ipv6_helper }}
+{%          endfor %}
 {%         else %}
 {%         endif %}
 {%         if l3_int.ospf_area is number %}

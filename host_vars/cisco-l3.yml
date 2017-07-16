@@ -80,10 +80,10 @@ vrf_l3_interfaces:
   name: "SINOG-30"
   ip_addr: 172.16.30.1
   netmask: 255.255.255.0
-  ip_helper_1: 
-  ip_helper_2:
+  ip_helper: 
   ipv6_addr: 2001:db8:30::1
   ipv6_m_flag: 1
+  ipv6_helper:
   ospf_area: 0
   stp_priority: 24576
 
@@ -92,10 +92,10 @@ vrf_l3_interfaces:
   name: "SINOG-40"
   ip_addr: 172.16.40.1
   netmask: 255.255.255.0
-  ip_helper_1: 
-  ip_helper_2:
+  ip_helper: 
   ipv6_addr: 2001:db8:40::1
   ipv6_m_flag: 1
+  ipv6_helper:
   ospf_area: 0
   stp_priority: 24576
 
@@ -104,10 +104,10 @@ l3_interfaces:
   name: "SINOG-10"
   ip_addr: 192.168.10.1
   netmask: 255.255.255.192
-  ip_helper_1: 192.168.100.100
-  ip_helper_2:
+  ip_helper: [ 192.168.100.100, 192.168.100.200 ]
   ipv6_addr: 2001:db8:10::1
   ipv6_m_flag: 1 
+  ipv6_helper: [ "2001:db8:100::100", "2001,db8:100::200" ]
   ospf_area: 0
   stp_priority: 28672
 
@@ -115,10 +115,10 @@ l3_interfaces:
   name: "SINOG-20"
   ip_addr: 192.168.20.1
   netmask: 255.255.255.0
-  ip_helper_1: 
-  ip_helper_2:
+  ip_helper: 
   ipv6_addr: 2001:db8:20::1
   ipv6_m_flag: 1
+  ipv6_helper: 
   ospf_area: 0
   stp_priority: 28672
 
