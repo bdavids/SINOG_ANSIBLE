@@ -12,7 +12,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 ## copy vimrc into home direcotry
 
-copy vim_jinja2/vimrc .vimrc
+cp sinog_ansible/vim_jinja2/vimrc .vimrc
 
 ## change shell
 

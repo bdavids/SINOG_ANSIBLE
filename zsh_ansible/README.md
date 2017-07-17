@@ -18,11 +18,11 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting oh-my-zsh/custom/
 
 ## copy zshrc into home directory
 
-cp zsh_ansible/zshrc .zshrc
+cp sinog_ansible/zsh_ansible/zshrc .zshrc
 
 ## set user shell
 
-chsh -s zsh
+chsh -s /bin/zsh
 
 ## change user shell
 
