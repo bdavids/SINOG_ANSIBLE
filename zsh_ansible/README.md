@@ -8,13 +8,13 @@ yum install git zsh vim
 
 git clone https://github.com/robbyrussell/oh-my-zsh
 
-## download zsh-syntax-highlighting
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-
 ## download ansible plugin
 
 git clone https://github.com/sparsick/ansible-zsh oh-my-zsh/custom/plugins/ansible
+
+## download zsh-syntax-highlighting
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 ## copy zshrc into home directory
 
