@@ -1,4 +1,4 @@
-# vim jinja2 syntax support
+# add jinja2 syntax support to vim
 
 yum install vim
 
