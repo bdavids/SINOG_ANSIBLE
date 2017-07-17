@@ -10,23 +10,13 @@ mkdir -p ~/.vim/bundle/
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-## edit vimrc
+## copy vimrc into home direcotry
 
-set nocompatible
+copy vim_jinja2/vimrc .vimrc
 
-syntax on
+## run shell again
 
-filetype on
-
-set rtp+=~/.vim/bundle/Vundle.vim/
-
-call vundle#begin()
-
-call vundle#end()
-
-Bundle "lepture/vim-jinja"
-
-au BufNewFile,BufRead *.j2 set ft=jinja
+su - $USER
 
 ## run vim
 
