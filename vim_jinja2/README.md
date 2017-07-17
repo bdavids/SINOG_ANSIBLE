@@ -14,7 +14,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 copy vim_jinja2/vimrc .vimrc
 
-## run shell again
+## change shell
 
 su - $USER
 
