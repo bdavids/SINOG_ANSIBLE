@@ -23,6 +23,7 @@ interface {{ l3_name }}
  no ip redirects
  no ip unreachables
  no ip proxy-arp
+ ip verify unicast source reachable-via rx allow-default
  ip pim dense-mode
  ip cgmp
  ip sap listen
@@ -43,6 +44,7 @@ interface {{ l3_name }}
  ipv6 nd router-preference High
  no ipv6 redirects
  no ipv6 unreachables
+ ipv6 verify unicast source reachable-via rx allow-default
 {%         if l3_int.ipv6_helper %}
 {%          for ipv6_helper in l3_int.ipv6_helper %}
  ipv6 dhcp relay destination {{ ipv6_helper }}
