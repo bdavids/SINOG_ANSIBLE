@@ -10,7 +10,7 @@ mkdir -p ~/.vim/bundle/
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-### edit vimrc
+## edit vimrc
 
 set nocompatible
 
@@ -28,7 +28,7 @@ Bundle "lepture/vim-jinja"
 
 au BufNewFile,BufRead *.j2 set ft=jinja
 
-### run vim
+## run vim
 
 vim
 :BundleInstall
