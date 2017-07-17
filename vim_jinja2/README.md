@@ -31,6 +31,7 @@ au BufNewFile,BufRead *.j2 set ft=jinja
 ## run vim
 
 vim
+
 :BundleInstall
 
 # Links
