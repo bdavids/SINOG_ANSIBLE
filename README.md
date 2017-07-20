@@ -78,6 +78,8 @@ ansible-playbook upgrade_cisco_l2.yml --ask-vault
 
 # Links
 
+ https://github.com/leucos/ansible-tuto
+
  https://github.com/ubajze/ansible_workshop
 
  https://github.com/ipspace/NetOpsWorkshop
